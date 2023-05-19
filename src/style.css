@@ -1,0 +1,104 @@
+#content{
+    display:grid;
+    grid-template-rows: 2fr 14fr 1fr;
+    grid-template-columns: 1fr 7fr;
+    height: 100vh;
+}
+
+.header{
+    grid-area: 1 / 1 / 2 / 3;
+    background-color: rgb(88, 23, 23);
+}
+
+.sidebar{
+    grid-area: 2 / 1 / 3 / 2;
+    display:flex;
+    flex-direction:column;
+    background-color: rgb(28, 29, 30);
+    border-right: 1px black solid;
+}
+
+.main{
+    grid-area: 2 / 2 / 3 / 3;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: grey;
+}
+.main-content{
+    background-color:rgb(28, 29, 30);;
+    height: 100%;
+    width:100%;
+    padding-left: 40px;
+    padding-right: 40px;
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.footer{
+    grid-area: 3 / 1 / 4 / 3;
+}
+.projects{
+    display:flex;
+    flex-direction:column;
+}
+.query-form{
+    display:block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 9999;
+}
+.form-header{
+    grid-area: 1/1/2/3;
+    display:flex;
+    justify-content: space-between;
+}
+.form-sidebar{
+    grid-area: 2/1/4/2;
+}
+.form-main{
+    grid-area: 2/2/3/3;
+    display:flex;
+    flex-direction: column;
+}
+.form-footer{
+    grid-area:3/2/4/3;
+}
+.formContent {
+    width: 600px;
+    height: 350px;
+    display:grid;
+    grid-template-rows: 40px 250px 100px;
+    grid-template-columns: 70px 1fr;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .main-content-line{
+    display:flex;
+    justify-content: space-between;
+    padding: 6px;
+    border-left: 3px red solid;
+    color: white;
+    background-color: rgb(32, 34, 36);
+  }
+  .main-content-line:hover{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .main-content-line-div{
+    display:flex;
+    gap: 12px;
+  }
+  .main-content-line-div > button > .icon {
+    width: 15px;
+    height: 15px;
+  }

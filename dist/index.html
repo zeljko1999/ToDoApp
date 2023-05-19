@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO App</title>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div id="content">
+        <div class="query-form">
+            <div class="formContent">
+                <div class="form-header">
+                    <h2>Create a new...</h2>
+                    <button id="close-formBtn">X</button>
+                </div>
+                <div class="form-sidebar">
+                    <button id='changeToDoBtn'>TO-DO</button>
+                    <button id='changeProjectBtn'>Project</button>
+                    <button id='changeNoteBtn'>Note</button>
+                </div>
+                <div class="form-main">
+                    <input type="text" name="title" placeholder = 'Title: Pay bills'>
+                    <textarea rows="8" id='details' placeholder = 'Details: e.g internet, phone, rent.'></textarea>
+                </div>
+                <div class="form-footer">
+                    <div>Due Date: 
+                        <input type="date" id="duedate">
+                    </div>
+                    <div>Priority:
+                        <input type="radio" name ='priority-low'>
+                        <label for ='priority-low'>LOW</label>
+                        
+                        <input type="radio" name ='priority-medium'>
+                        <label for ='priority-low'>MEDIUM</label>
+                        
+                        <input type="radio" name ='priority-high'>
+                        <label for ='priority-high'>HIGH</label>
+                        <button class="submit-form">ADD TO DO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="header-name">TO-DO</div>
+        </div>
+        <div class="sidebar">
+                <button>Home</button>
+                <button>Today</button>
+                <button>This Week</button>
+                <div class="projects">Projects
+                    <button>Study</button>
+                </div>
+                <button class="addNewBtn">+</button>
+
+        </div>
+        <div class="main">
+            <div class="main-content">
+
+            </div>
+        </div>
+        <div class="footer"></div>
+
+    </div>
+</body>
+</html>
