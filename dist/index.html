@@ -21,21 +21,21 @@
                     <button id='changeNoteBtn'>Note</button>
                 </div>
                 <div class="form-main">
-                    <input type="text" name="title" placeholder = 'Title: Pay bills'>
-                    <textarea rows="8" id='details' placeholder = 'Details: e.g internet, phone, rent.'></textarea>
+                    <input type="text" name="title" id="taskTitle" placeholder = 'Title: Pay bills'>
+                    <textarea rows="8" id='taskDetails' placeholder = 'Details: e.g internet, phone, rent.'></textarea>
                 </div>
                 <div class="form-footer">
                     <div>Due Date: 
                         <input type="date" id="duedate">
                     </div>
                     <div>Priority:
-                        <input type="radio" name ='priority-low'>
+                        <input type="radio" name ='priority' value="low">
                         <label for ='priority-low'>LOW</label>
                         
-                        <input type="radio" name ='priority-medium'>
+                        <input type="radio" name ='priority' value="medium">
                         <label for ='priority-low'>MEDIUM</label>
                         
-                        <input type="radio" name ='priority-high'>
+                        <input type="radio" name ='priority' value="high">
                         <label for ='priority-high'>HIGH</label>
                         <button class="submit-form">ADD TO DO</button>
                     </div>
@@ -46,11 +46,11 @@
             <div class="header-name">TO-DO</div>
         </div>
         <div class="sidebar">
-                <button>Home</button>
-                <button>Today</button>
+                <button id="home">Home</button>
+                <button id="today">Today</button>
                 <button>This Week</button>
                 <div class="projects">Projects
-                    <button>Study</button>
+                    <button id="Study">Study</button>
                 </div>
                 <button class="addNewBtn">+</button>
 
