@@ -2,6 +2,7 @@ import '../src/style.css'
 import createTodo, { createProject, projectObject, projectsManager } from '../factory'
 import DOMtoDo, {addNewQuery, changeNote, changeProject,changeToDo, drawTask,
     taskManager} from '../DOM'
+    import { compareAsc, format, parseISO } from 'date-fns'
 const home = projectObject('home')
 const today = projectObject('today')
 const thisWeek = projectObject('thisWeek')
@@ -10,16 +11,8 @@ projectsManager.addProject(home)
 projectsManager.addProject(today)
 projectsManager.addProject(thisWeek)
 projectsManager.addProject(Study)
-let allNewProjects = {}
-function setProject(name, value ){
-    allNewProjects[name] = value
-}
-function getProject(name) {
-    return allNewProjects[name]
-}
 Study.tasks[0] = createTodo('red','asd','11111','low')
-let breakDate = []
-let todayDate = new Date()
+let todayDate = format(new Date(), 'yyyy-MM-dd')
 projectsManager.projects[0].isActive = 1
 const addTaskBtn = document.querySelector('.submit-form')
 const homeTasksBtn = document.querySelector('#home')
@@ -54,15 +47,18 @@ studyTasksBtn.addEventListener('click', function(){
 })
 
 todayTasksBtn.addEventListener('click', function() {
-    for( let i =0; i<home.length; i++){
-            console.log(todayDate.getFullYear())
-            console.log(todayDate.getMonth() + 1)
-            console.log(todayDate.getDate())
-            breakDate = home[i].dateDue.split('-')
-            console.log(parseInt(breakDate[0]))
-            console.log(parseInt(breakDate[1]))
-            console.log(parseInt(breakDate[2]))
-    }
+    taskManager.clearMain()
+    for(let i =0; i < projectsManager.projects.length; i++)
+    {
+            if(projectsManager.projects[i].id !== 'today' &&
+            projectsManager.projects[i].id !== 'thisWeek')
+            {
+                for(let c = 0 ; c<projectsManager.projects[i].tasks.length; c++)
+                    if(compareAsc(parseISO(todayDate), parseISO(projectsManager.projects[i].tasks[c].dateDue)) === 0){
+                        drawTask(projectsManager.projects[i].tasks[c])
+                    }
+            }
+        }
 })
 changeNote()
 changeToDo()

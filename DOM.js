@@ -25,8 +25,11 @@ const drawAllTasks = (project) => {
     for(let i=0;i<project.length;i++)
         drawTask(project[i])
 }
+const clearMain = () => {
+    mainContent.replaceChildren()
+}
 
-return {makeNewTask, drawAllTasks}
+return {makeNewTask, drawAllTasks, clearMain,}
 })()
 
 export default function DOMtoDo () {
