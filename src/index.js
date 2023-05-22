@@ -24,13 +24,13 @@ addTaskBtn.addEventListener('click', function () {
         if(projectsManager.projects[i].isActive === 1)
     {
     projectsManager.projects[i].tasks.push(newTask)
-    taskManager.drawAllTasks(projectsManager.projects[i].tasks)
+    taskManager.drawAllTasks(projectsManager.projects[i].tasks, projectsManager.projects[i].id)
     }
 }
 )
 
 homeTasksBtn.addEventListener('click', function(){
-    taskManager.drawAllTasks(home.tasks)
+    taskManager.drawAllTasks(home.tasks, home.id)
     for(let i=0; i<projectsManager.projects.length; i++)
        if(projectsManager.projects[i].isActive === 1)
        projectsManager.projects[i].isActive = 0
@@ -39,7 +39,7 @@ homeTasksBtn.addEventListener('click', function(){
     
 studyTasksBtn.addEventListener('click', function(){
     console.log(projectsManager.projects)
-    taskManager.drawAllTasks(Study.tasks)
+    taskManager.drawAllTasks(Study.tasks, Study.id)
     for(let i=0; i<projectsManager.projects.length; i++)
        if(projectsManager.projects[i].isActive === 1)
        projectsManager.projects[i].isActive = 0
@@ -55,7 +55,7 @@ todayTasksBtn.addEventListener('click', function() {
             {
                 for(let c = 0 ; c<projectsManager.projects[i].tasks.length; c++)
                     if(compareAsc(parseISO(todayDate), parseISO(projectsManager.projects[i].tasks[c].dateDue)) === 0){
-                        drawTask(projectsManager.projects[i].tasks[c])
+                        drawTask(projectsManager.projects[i].tasks[c], projectsManager.projects[i].id)
                     }
             }
         }

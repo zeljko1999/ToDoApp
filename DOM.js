@@ -20,10 +20,10 @@ const makeNewTask = () => {
     return newTask
     }
 
-const drawAllTasks = (project) => {
+const drawAllTasks = (project, projectID) => {
     mainContent.replaceChildren()
     for(let i=0;i<project.length;i++)
-        drawTask(project[i])
+        drawTask(project[i], projectID)
 }
 const clearMain = () => {
     mainContent.replaceChildren()
@@ -42,7 +42,7 @@ export function addNewQuery () {
 })
 }
 
-export function drawTask(toDo) { 
+export function drawTask(toDo, proID) { 
     const deleteImg = document.createElement('img')
     const editImg = document.createElement('img')
     deleteImg.src = '../src/icons8-delete-100.png'
@@ -77,7 +77,6 @@ export function drawTask(toDo) {
     mainContent.appendChild(newLine)
 
     newDetailsBtn.addEventListener('click', function () {
-        console.log('clicked')
         const displayContainer = document.querySelector('.details-container')
         const displayTitle = document.querySelector('.details-title')
         const exitDisplayBtn = document.querySelector('.details-exitBtn')
@@ -85,7 +84,7 @@ export function drawTask(toDo) {
         const displayDate = document.querySelector('.details-date')
         const displayDetail = document.querySelector('.details-details')
         const displayProject = document.querySelector('.details-project')
-        displayProject.textContent = `Priority:   ${toDo.priority}`
+        displayProject.textContent = `Project:   ${proID}`
         displayTitle.textContent = toDo.name
         exitDisplayBtn.textContent = 'X'
         displayPrio.textContent = `Priority:   ${toDo.priority}`
@@ -156,7 +155,7 @@ export function changeToDo () {
         if(projectsManager.projects[i].isActive === 1)
     {
     projectsManager.projects[i].tasks.push(newTask)
-    taskManager.drawAllTasks(projectsManager.projects[i].tasks)
+    taskManager.drawAllTasks(projectsManager.projects[i].tasks, projectsManager.projects[i].id)
     }
     })
 })

@@ -28,7 +28,7 @@ export const projectsManager = (() => {
           if(projectsManager.projects[i].id === project.id)
             break;
         }
-      taskManager.drawAllTasks(projectsManager.projects[i].tasks)
+      taskManager.drawAllTasks(projectsManager.projects[i].tasks, projectsManager.projects[i].id)
       projectsManager.projects[i].isActive = 1
     })
   }
