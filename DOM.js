@@ -75,6 +75,27 @@ export function drawTask(toDo) {
     divLeft.classList.add('main-content-line-div')
     divRight.classList.add('main-content-line-div')
     mainContent.appendChild(newLine)
+
+    newDetailsBtn.addEventListener('click', function () {
+        console.log('clicked')
+        const displayContainer = document.querySelector('.details-container')
+        const displayTitle = document.querySelector('.details-title')
+        const exitDisplayBtn = document.querySelector('.details-exitBtn')
+        const displayPrio = document.querySelector('.details-priority')
+        const displayDate = document.querySelector('.details-date')
+        const displayDetail = document.querySelector('.details-details')
+        const displayProject = document.querySelector('.details-project')
+        displayProject.textContent = `Priority:   ${toDo.priority}`
+        displayTitle.textContent = toDo.name
+        exitDisplayBtn.textContent = 'X'
+        displayPrio.textContent = `Priority:   ${toDo.priority}`
+        displayDate.textContent = `Due Date:   ${toDo.dateDue}`
+        displayDetail.textContent = `Details:   ${toDo.details}`
+        exitDisplayBtn.addEventListener('click', function() {
+            displayContainer.style.display = 'none'
+        })
+        displayContainer.style.display = 'block'
+    })
 }
 
 export function changeToDo () { 
