@@ -1,13 +1,30 @@
+html,body{
+  height: 100%;
+  margin:0;
+  padding:0;
+  
+}
+body{
+  display:flex;
+  background: linear-gradient(to right bottom, rgba(45, 123, 113, 0.8), rgba(33, 117, 115, 0.9)), url(https://bscottnz.github.io/todo/img/wood-bg.jpg);
+}
 #content{
+    flex:1;
+    padding: 150px 250px;
+    height: auto;
     display:grid;
     grid-template-rows: 2fr 14fr 1fr;
-    grid-template-columns: 1fr 7fr;
-    height: 100vh;
+    grid-template-columns: 1.5fr 7fr;
 }
 
 .header{
+    padding: 5px 20px;
     grid-area: 1 / 1 / 2 / 3;
     background-color: rgb(88, 23, 23);
+    font-size: 50px;
+    color:white;
+    display:flex;
+    align-items:center;
 }
 
 .sidebar{
@@ -16,18 +33,37 @@
     flex-direction:column;
     background-color: rgb(28, 29, 30);
     border-right: 1px black solid;
+    padding: 20px;
+    color:white;
 }
-
+.sidebar>button, .projects>button, .notes>button{
+  background-color: brown;
+  color:white;
+  font-size: 20px;
+}
+.projects, .notes{
+  font-size: 25px;
+}
+.addNewBtn{
+  margin-top: auto;
+  align-self: flex-start;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: brown;
+  color: white;
+  font-size: 40px;
+}
 .main{
     grid-area: 2 / 2 / 3 / 3;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    background-color: grey;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: rgb(208, 205, 201);
+    border-color: rgb(28, 29, 30)
 }
 .main-content{
     background-color:rgb(28, 29, 30);;
     height: 100%;
-    width:100%;
     padding-left: 40px;
     padding-right: 40px;
     display:flex;
@@ -92,6 +128,7 @@
   }
   .main-content-line:hover{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.004);
   }
 
   .main-content-line-div{
