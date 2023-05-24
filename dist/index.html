@@ -25,26 +25,26 @@
         </div>
 
         <div class="query-form">
-            <div class="formContent">
+            <form action='' method='post' class="formContent">
                 <div class="form-header">
                     <h2>Create a new...</h2>
-                    <button id="close-formBtn">X</button>
+                    <button id="close-formBtn" type="button">X</button>
                 </div>
                 <div class="form-sidebar">
-                    <button id='changeToDoBtn'>TO-DO</button>
-                    <button id='changeProjectBtn'>Project</button>
-                    <button id='changeNoteBtn'>Note</button>
+                    <button id='changeToDoBtn' type="button">TO-DO</button>
+                    <button id='changeProjectBtn' type="button">Project</button>
+                    <button id='changeNoteBtn' type="button">Note</button>
                 </div>
                 <div class="form-main">
-                    <input type="text" name="title" id="taskTitle" placeholder = 'Title: Pay bills'>
+                    <input type="text" name="title" id="taskTitle" placeholder = 'Title: Pay bills' required>
                     <textarea rows="8" id='taskDetails' placeholder = 'Details: e.g internet, phone, rent.'></textarea>
                 </div>
                 <div class="form-footer">
                     <div>Due Date: 
-                        <input type="date" id="duedate">
+                        <input type="date" id="duedate" required>
                     </div>
                     <div>Priority:
-                        <input type="radio" name ='priority' value="low">
+                        <input type="radio" name ='priority' value="low" required>
                         <label for ='priority-low'>LOW</label>
                         
                         <input type="radio" name ='priority' value="medium">
@@ -52,9 +52,9 @@
                         
                         <input type="radio" name ='priority' value="high">
                         <label for ='priority-high'>HIGH</label>
-                        <button class="submit-form">ADD TO DO</button>
+                        <input class="submit-form" type="submit">
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <div class="header">

@@ -1,6 +1,6 @@
 import '../src/style.css'
 import createTodo, { createProject, projectObject, projectsManager } from '../factory'
-import DOMtoDo, {addNewQuery, changeNote, changeProject,changeToDo, drawTask,
+import DOMtoDo, {addNewQuery,defaultToDo, changeNote, changeProject,changeToDo, drawTask,
     taskManager} from '../DOM'
     import { compareAsc, format, parseISO } from 'date-fns'
 const home = projectObject('home')
@@ -14,16 +14,21 @@ projectsManager.addProject(Study)
 Study.tasks[0] = createTodo('red','asd','11111','low')
 let todayDate = format(new Date(), 'yyyy-MM-dd')
 projectsManager.projects[0].isActive = 1
-const addTaskBtn = document.querySelector('.submit-form')
 const homeTasksBtn = document.querySelector('#home')
 const todayTasksBtn = document.querySelector('#today')
 const studyTasksBtn = document.querySelector('#Study')
-addTaskBtn.addEventListener('click', function () {
+const taskTitle = document.querySelector('#taskTitle')
+const form = document.querySelector('.query-form')
+form.addEventListener('submit', function (event) {
+    event.preventDefault()
+    if(taskTitle.value === '')
+        return
     const newTask = taskManager.makeNewTask()
     for(let i=0; i<projectsManager.projects.length; i++)
         if(projectsManager.projects[i].isActive === 1)
     {
     projectsManager.projects[i].tasks.push(newTask)
+    defaultToDo()
     taskManager.drawAllTasks(projectsManager.projects[i].tasks, projectsManager.projects[i].id)
     }
 }
@@ -64,4 +69,4 @@ changeNote()
 changeToDo()
 changeProject()
 addNewQuery()
-console.log(projectsManager.projects)
+
