@@ -12,7 +12,7 @@ body{
 }
 #content{
     flex:1;
-    padding: 150px 250px;
+    padding: 5% 10%;
     height: auto;
     display:grid;
     grid-template-rows: 2fr 14fr 1fr;
@@ -185,7 +185,7 @@ body{
     background: rgb(129, 39, 39);
 	  color: #fff;
   }
-  input{
+  input[type=button]{
     box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -193,6 +193,17 @@ body{
 	box-shadow: 1px 1px 4px #EBEBEB;
 	-moz-box-shadow: 1px 1px 4px #EBEBEB;
 	-webkit-box-shadow: 1px 1px 4px #EBEBEB;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 7px;
+	outline: none;
+  }
+  input[type=checkbox]{
+    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: 1px solid #C2C2C2;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -293,14 +304,16 @@ body{
   }
   .fade{
     text-decoration: line-through;
-    color:rgba(255,255,255,0.5)
+    color:rgba(255,255,255,0.3);
+    -webkit-transition: all .3s;
+    transition: all .3s;
   }
   .fadeBtn{
-    background-color: rgba(255,255,255,.5)
+    background-color: rgba(255,255,255,.3)
   }
   .details-button{
     position: relative;
-    margin-right: 2.5rem;
+    margin-right: 1rem;
     padding: 0.5rem 1rem;
     border: 1.5px solid #38ceba;
     border-radius: 3px;
@@ -319,12 +332,17 @@ body{
     background-color:rgb(39, 141, 127);
     cursor:pointer;
   }
+  .fadeBtn{
+    opacity: 0.3;
+    background-color: inherit;
+  }
  .contentBtn{
   all:unset;
   padding: 5px;
   background-color: rgb(32, 34, 36);
  }
  .fa-trash-can, .fa-pen-to-square{
+  transition: all .3s;
   color:crimson
  }
  .fa-trash-can:hover, .fa-pen-to-square:hover{
@@ -333,11 +351,15 @@ body{
  }
   .main-content-line-div{
     display:flex;
+    align-items:center;
     gap: 12px;
   }
   .main-content-line-div > button > .icon {
     width: 15px;
     height: 15px;
+  }
+  .line-date{
+    min-width: 75px;
   }
   .details-display{
     width: 300px;

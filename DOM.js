@@ -2,6 +2,7 @@ const form = document.querySelector('.query-form')
 const mainContent = document.querySelector('.main-content')
 const homeTasksBtn = document.querySelector('#home')
 import createTodo, { createProject , projectsManager} from './factory'
+import { format, parseISO } from 'date-fns'
 
 export const taskManager = (() => {
 const makeNewTask = () => {
@@ -69,6 +70,8 @@ export function drawTask(toDo, proID) {
     divRight.appendChild(newDeleteBtn)
     newLine.appendChild(divLeft)
     newLine.appendChild(divRight)
+    newDate.textContent = (format(parseISO(toDo.dateDue), 'MMM do'))
+    newDate.classList.add('line-date')
     newLine.classList.add('main-content-line')
     if(toDo.priority === 'low'){
         newLine.classList.add('prio-low')
@@ -86,13 +89,22 @@ export function drawTask(toDo, proID) {
     mainContent.appendChild(newLine)
     newCheckbox.addEventListener('click', function() {
         if(newCheckbox.checked){
+            newDate.classList.add('fade')
             newName.classList.add('fade')
             newDetailsBtn.classList.add('fadeBtn')
+            editImg.classList.add('fadeBtn')
+            deleteImg.classList.add('fadeBtn')
         }
         else{
+            newDate.classList.remove('fade')
             newName.classList.remove('fade')
             newDetailsBtn.classList.remove('fadeBtn')
+            editImg.classList.remove('fadeBtn')
+            deleteImg.classList.remove('fadeBtn')
         }
+    })
+    newDeleteBtn.addEventListener('click', function() {
+        console.log(toDo, proID)
     })
     newDetailsBtn.addEventListener('click', function () {
         const displayContainer = document.querySelector('.details-container')
