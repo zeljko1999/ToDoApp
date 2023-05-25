@@ -17,23 +17,6 @@ projectsManager.projects[0].isActive = 1
 const homeTasksBtn = document.querySelector('#home')
 const todayTasksBtn = document.querySelector('#today')
 const studyTasksBtn = document.querySelector('#Study')
-const taskTitle = document.querySelector('#taskTitle')
-const form = document.querySelector('.query-form')
-form.addEventListener('submit', function (event) {
-    event.preventDefault()
-    if(taskTitle.value === '')
-        return
-    const newTask = taskManager.makeNewTask()
-    for(let i=0; i<projectsManager.projects.length; i++)
-        if(projectsManager.projects[i].isActive === 1)
-    {
-    projectsManager.projects[i].tasks.push(newTask)
-    defaultToDo()
-    taskManager.drawAllTasks(projectsManager.projects[i].tasks, projectsManager.projects[i].id)
-    }
-}
-)
-
 homeTasksBtn.addEventListener('click', function(){
     taskManager.drawAllTasks(home.tasks, home.id)
     for(let i=0; i<projectsManager.projects.length; i++)
@@ -69,4 +52,3 @@ changeNote()
 changeToDo()
 changeProject()
 addNewQuery()
-

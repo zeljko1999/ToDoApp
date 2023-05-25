@@ -111,76 +111,138 @@ export function changeToDo () {
         form.style.display = 'none'
     })
     const toDoBtn = document.querySelector('#changeToDoBtn')
-    toDoBtn.addEventListener('click', function() {
-    const formMain = document.querySelector('.form-main')
-    const formFooter = document.querySelector('.form-footer')
-    formMain.replaceChildren()
-    formFooter.replaceChildren()
-    const todoTitle = document.createElement('input')
-    todoTitle.setAttribute('required', '')
-    const todoDetails = document.createElement('textarea')
-    const todoDate = document.createElement('input')
-    todoDate.setAttribute('required', '')
-    const todoPrioLow = document.createElement('input')
-    todoPrioLow.setAttribute('required', '')
-    const todoPrioMedium = document.createElement('input')
-    const todoPrioHigh = document.createElement('input')
-    const footerDiv1 = document.createElement('div')
-    const footerDiv2 = document.createElement('div')
-    const todoSubmitBtn = document.createElement('input')
-    todoSubmitBtn.type = 'button'
-    todoTitle.type = 'text'
-    todoTitle.name = 'title'
-    todoTitle.id = 'taskTitle'
-    todoTitle.placeholder= 'Title: Pay bills'
-    todoDetails.rows = '8'
-    todoDetails.id = 'taskDetails'
-    todoDetails.placeholder = 'Details: e.g internet, phone, rent.'
-    footerDiv1.textContent = 'Due Date: '
-    todoDate.type = 'date'
-    todoDate.id = 'duedate'
-    footerDiv2.textContent = 'Priority: '
-    todoPrioLow.type = 'radio'
-    todoPrioLow.name = 'priority'
-    todoPrioLow.value = 'low'
-    todoPrioMedium.type = 'radio'
-    todoPrioMedium.name = 'priority'
-    todoPrioMedium.value = 'medium'
-    todoPrioHigh.type = 'radio'
-    todoPrioHigh.name = 'priority'
-    todoPrioHigh.value = 'high'
-    todoSubmitBtn.classList.add('submit-form')
-    todoSubmitBtn.type = 'submit'
-    todoSubmitBtn.textContent = 'ADD TO DO'
-    footerDiv1.appendChild(todoDate)
-    footerDiv2.appendChild(todoPrioLow)
-    footerDiv2.appendChild(todoPrioMedium)
-    footerDiv2.appendChild(todoPrioHigh)
-    formMain.appendChild(todoTitle)
-    formMain.appendChild(todoDetails)
-    formFooter.appendChild(footerDiv1)
-    formFooter.appendChild(footerDiv2)
-    footerDiv2.appendChild(todoSubmitBtn)
-    form.addEventListener('submit', function(event){
-        event.preventDefault()
-        const newTask = taskManager.makeNewTask()
-        for(let i=0; i<projectsManager.projects.length; i++)
-        if(projectsManager.projects[i].isActive === 1)
-    {
-    projectsManager.projects[i].tasks.push(newTask)
-    taskManager.drawAllTasks(projectsManager.projects[i].tasks, projectsManager.projects[i].id)
-    todoTitle.value = ''
-    todoDetails.value = ''
-    todoDate.value = ''
-    todoPrioHigh.checked = false
-    todoPrioLow.checked = false
-    todoPrioMedium.checked = false
-    form.style.display = 'none'
+    toDoBtn.addEventListener('click', drawTodo)
     }
+
+    let hasEventListener = 0
+function drawTodo() {
+        if(form.style.display !== 'block')
+            form.style.display = 'block'
+        const formMain = document.querySelector('.form-main')
+        const formFooter = document.querySelector('.form-footer')
+        formMain.replaceChildren()
+        formFooter.replaceChildren()
+        const todoTitle = document.createElement('input')
+        todoTitle.setAttribute('required', '')
+        const todoDetails = document.createElement('textarea')
+        const todoDate = document.createElement('input')
+        todoDate.setAttribute('required', '')
+        const todoPrioLow = document.createElement('input')
+        todoPrioLow.setAttribute('required', '')
+        const todoPrioMedium = document.createElement('input')
+        const todoPrioHigh = document.createElement('input')
+        const footerDiv1 = document.createElement('div')
+        const footerDiv2 = document.createElement('div')
+        const todoSubmitBtn = document.createElement('input')
+        const todoLabelLow = document.createElement('label')
+        const todoLabelMedium= document.createElement('label')
+        const todoLabelHigh = document.createElement('label')
+        todoLabelLow.textContent = 'Low'
+        todoLabelMedium.textContent = 'Medium'
+        todoLabelHigh.textContent = 'High'
+        todoSubmitBtn.type = 'button'
+        todoTitle.type = 'text'
+        todoTitle.name = 'title'
+        todoTitle.id = 'taskTitle'
+        todoTitle.placeholder= 'Title: Pay bills'
+        todoDetails.rows = '8'
+        todoDetails.id = 'taskDetails'
+        todoDetails.placeholder = 'Details: e.g internet, phone, rent.'
+        footerDiv1.textContent = 'Due Date: '
+        todoDate.type = 'date'
+        todoDate.id = 'duedate'
+        footerDiv2.textContent = 'Priority:'
+        todoPrioLow.type = 'radio'
+        todoPrioLow.name = 'priority'
+        todoPrioLow.value = 'low'
+        todoPrioMedium.type = 'radio'
+        todoPrioMedium.name = 'priority'
+        todoPrioMedium.value = 'medium'
+        todoPrioHigh.type = 'radio'
+        todoPrioHigh.name = 'priority'
+        todoPrioHigh.value = 'high'
+        todoSubmitBtn.classList.add('submit-form')
+        todoSubmitBtn.type = 'submit'
+        todoSubmitBtn.textContent = 'ADD TO DO'
+        todoLabelHigh.classList.add('priority-label-high')
+        todoLabelMedium.classList.add('priority-label-medium')
+        todoLabelLow.classList.add('priority-label-low')
+        footerDiv2.classList.add('radio-buttons')
+        todoLabelHigh.addEventListener('click', function() {
+        if(todoPrioHigh.checked) {
+            todoLabelHigh.classList.add('priority-label-high-selected')
+            todoLabelHigh.classList.remove('priority-label-high')
+        }
+        else {
+            todoLabelHigh.classList.remove('priority-label-high-selected')
+            todoLabelHigh.classList.add('priority-label-high')
+            todoLabelMedium.classList.remove('priority-label-medium-selected')
+            todoLabelMedium.classList.add('priority-label-medium')
+            todoLabelLow.classList.remove('priority-label-low-selected')
+            todoLabelLow.classList.add('priority-low-high')
+        }
     })
+    todoLabelMedium.addEventListener('click', function() {
+        if(todoPrioMedium.checked) {
+            todoLabelMedium.classList.add('priority-label-medium-selected')
+            todoLabelMedium.classList.remove('priority-label-medium')
+        }
+        else {
+            todoLabelMedium.classList.remove('priority-label-medium-selected')
+            todoLabelMedium.classList.add('priority-label-medium')
+            todoLabelHigh.classList.remove('priority-label-high-selected')
+            todoLabelHigh.classList.add('priority-label-high')
+            todoLabelLow.classList.remove('priority-label-low-selected')
+            todoLabelLow.classList.add('priority-low-high')
+        }
+    })
+    todoLabelLow.addEventListener('click', function() {
+        if(todoPrioLow.checked) {
+            todoLabelLow.classList.add('priority-label-low-selected')
+            todoLabelLow.classList.remove('priority-low-high')
+        }
+        else {
+            todoLabelLow.classList.remove('priority-label-low-selected')
+            todoLabelLow.classList.add('priority-low-high')
+            todoLabelHigh.classList.remove('priority-label-high-selected')
+            todoLabelHigh.classList.add('priority-label-high')
+            todoLabelMedium.classList.remove('priority-label-medium-selected')
+            todoLabelMedium.classList.add('priority-label-medium')
+        }
+    })
+        todoLabelHigh.appendChild(todoPrioHigh)
+        todoLabelMedium.appendChild(todoPrioMedium)
+        todoLabelLow.appendChild(todoPrioLow)
+        footerDiv1.appendChild(todoDate)
+        footerDiv2.appendChild(todoLabelLow)
+        footerDiv2.appendChild(todoLabelMedium)
+        footerDiv2.appendChild(todoLabelHigh)
+        formMain.appendChild(todoTitle)
+        formMain.appendChild(todoDetails)
+        formFooter.appendChild(footerDiv1)
+        formFooter.appendChild(footerDiv2)
+        formFooter.appendChild(todoSubmitBtn)
+        if( hasEventListener === 0){
+        form.addEventListener('submit', function(event){
+            event.preventDefault()
+            const newTask = taskManager.makeNewTask()
+            for(let i=0; i<projectsManager.projects.length; i++)
+            if(projectsManager.projects[i].isActive === 1)
+        {
+        projectsManager.projects[i].tasks.push(newTask)
+        taskManager.drawAllTasks(projectsManager.projects[i].tasks, projectsManager.projects[i].id)
+        todoTitle.value = ''
+        todoDetails.value = ''
+        todoDate.value = ''
+        todoPrioHigh.checked = false
+        todoPrioLow.checked = false
+        todoPrioMedium.checked = false
+        form.style.display = 'none'
+        }
 })
 }
-
+hasEventListener++
+}
 export function changeProject () {
     const projectBtn = document.querySelector('#changeProjectBtn')
     projectBtn.addEventListener('click', function () {
@@ -203,7 +265,10 @@ export function changeProject () {
             const newProject = document.createElement('button')
             const projectTitle = document.querySelector('.project-title')
             if(projectTitle.value === '')
+            {
+                alert('Project title cannot be empty!')
                 return
+            }
             newProject.textContent = projectTitle.value
             newProject.setAttribute('id', projectTitle.value)
             projects.appendChild(newProject)
@@ -246,8 +311,6 @@ export function changeNote () {
 
 export function addNewQuery () {
     const newBtn = document.querySelector('.addNewBtn')
-    newBtn.addEventListener('click', function() {
-    form.style.display = 'block'
-    changeToDo()
-})
+    newBtn.removeEventListener('click', drawTodo)
+    newBtn.addEventListener('click', drawTodo)
 }

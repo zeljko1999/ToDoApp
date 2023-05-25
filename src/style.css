@@ -2,7 +2,9 @@ html,body{
   height: 100%;
   margin:0;
   padding:0;
-  
+}
+*{
+  font-family: Arial, Helvetica, sans-serif;
 }
 body{
   display:flex;
@@ -37,9 +39,12 @@ body{
     color:white;
 }
 .sidebar>button, .projects>button, .notes>button{
-  background-color: brown;
+  background-color: rgb(121, 38, 38);
   color:white;
   font-size: 20px;
+}
+.sidebar>button, .projects>button, .notes>button:hover{
+  cursor:pointer;
 }
 .projects, .notes{
   font-size: 25px;
@@ -78,7 +83,7 @@ body{
     flex-direction:column;
 }
 .query-form{
-    display:block;
+    display:none;
     position: fixed;
     top: 0;
     left: 0;
@@ -91,9 +96,13 @@ body{
     grid-area: 1/1/2/3;
     display:flex;
     justify-content: space-between;
+    align-items: center;
 }
 .form-sidebar{
     grid-area: 2/1/4/2;
+    display:flex;
+    flex-direction:column;
+    gap:1px;
 }
 .form-main{
     grid-area: 2/2/3/3;
@@ -102,22 +111,165 @@ body{
 }
 .form-footer{
     grid-area:3/2/4/3;
+    display:grid;
+    grid-template-rows: 1fr 1fr;
+}
+.radio-buttons{
+  display:flex;
+  align-items: center;
+  width:100%;
+  gap: 5px;
 }
 .formContent {
     width: 600px;
-    height: 350px;
+    height: 400px;
     display:grid;
     grid-template-rows: 40px 250px 100px;
-    grid-template-columns: 70px 1fr;
+    grid-template-columns: 120px 1fr;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: white;
     padding: 20px;
     border-radius: 5px;
   }
+  .form-sidebar > button{
+    border: none;
+	padding: 8px 15px 8px 15px;
+	background: rgb(88, 23, 23);
+	color: #fff;
+	box-shadow: 1px 1px 4px #DADADA;
+	-moz-box-shadow: 1px 1px 4px #DADADA;
+	-webkit-box-shadow: 1px 1px 4px #DADADA;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+  width: 100px;
+  }
+  #close-formBtn{
+  border: none;
+	padding: 8px 15px 8px 15px;
+	background: rgb(88, 23, 23);
+	color: #fff;
+	box-shadow: 1px 1px 4px #DADADA;
+	border-radius:10px;
+  }
+  .submit-form{
+    justify-self:center;
+  }
+  #close-formBtn:hover{
+    cursor:pointer;
+    background: rgb(129, 39, 39);
+	  color: #fff;
+  }
+  .form-sidebar > button:hover{
+    cursor:pointer;
+    background: rgb(129, 39, 39);
+	  color: #fff;
+  }
+  input[type=submit]{
+  border: none;
+	background: rgb(88, 23, 23);
+	box-shadow: 1px 1px 4px #DADADA;
+  color:white;
+	-moz-box-shadow: 1px 1px 4px #DADADA;
+	-webkit-box-shadow: 1px 1px 4px #DADADA;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+  width: 100px;
+  }
+  input[type=submit]:hover{
+    cursor:pointer;
+    background: rgb(129, 39, 39);
+	  color: #fff;
+  }
+  input{
+    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: 1px solid #C2C2C2;
+	box-shadow: 1px 1px 4px #EBEBEB;
+	-moz-box-shadow: 1px 1px 4px #EBEBEB;
+	-webkit-box-shadow: 1px 1px 4px #EBEBEB;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 7px;
+	outline: none;
+  }
+  input:focus{
+    border: 1px solid rgb(129, 39, 39);
+  }
 
+  .priority-label-low, .priority-label-medium, .priority-label-high{
+    border: none;
+    padding: 5px 0;
+    box-shadow: 1px 1px 4px #DADADA;
+    color: white;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    width: 100px;
+    text-align:center;
+  }
+  .priority-label-low-selected, .priority-label-medium-selected, .priority-label-high-selected{
+    border: none;
+    padding: 5px 0;
+    box-shadow: 1px 1px 4px #DADADA;
+    color: white;
+    -moz-box-shadow: 1px 1px 4px #DADADA;
+    -webkit-box-shadow: 1px 1px 4px #DADADA;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    width: 100px;
+    text-align:center;
+  }
+  .priority-label-low{
+    background-color:rgb(14, 94, 14);
+  }
+  .priority-label-low-selected{
+    background-color:rgb(111, 185, 111);
+  }
+  .priority-label-low:hover{
+    background-color:rgb(107, 184, 107);
+    cursor:pointer;
+  }
+  .priority-label-medium{
+    background-color:rgb(216, 150, 26)
+  }
+  .priority-label-medium-selected{
+    background-color:rgb(192, 163, 33)
+  }
+  .priority-label-medium:hover{
+    background-color:rgb(192, 163, 33);
+    cursor:pointer;
+  }
+  .priority-label-high{
+    background-color:rgb(190, 28, 28);
+  }
+  .priority-label-high-selected{
+    background-color:rgb(197, 74, 74);
+  }
+  .priority-label-high:hover{
+    background-color:rgb(190, 73, 73);
+    cursor:pointer;
+  }
+  input[type=radio]
+  {
+    position: relative;
+    left: 2.2rem;
+    height: 1px;
+    width: 1px;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    box-sizing: inherit;
+  }
   .main-content-line{
     display:flex;
     justify-content: space-between;
