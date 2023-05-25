@@ -259,6 +259,15 @@ body{
     background-color:rgb(190, 73, 73);
     cursor:pointer;
   }
+  .prio-high{
+    border-left: 3px rgb(190, 28, 28) solid;
+  }
+  .prio-medium{
+    border-left: 3px rgb(216, 150, 26) solid;
+  }
+  .prio-low{
+    border-left: 3px rgb(14, 94, 14) solid;
+  }
   input[type=radio]
   {
     position: relative;
@@ -273,8 +282,8 @@ body{
   .main-content-line{
     display:flex;
     justify-content: space-between;
+    align-items:center;
     padding: 6px;
-    border-left: 3px red solid;
     color: white;
     background-color: rgb(32, 34, 36);
   }
@@ -282,7 +291,46 @@ body{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     transform: scale(1.004);
   }
-
+  .fade{
+    text-decoration: line-through;
+    color:rgba(255,255,255,0.5)
+  }
+  .fadeBtn{
+    background-color: rgba(255,255,255,.5)
+  }
+  .details-button{
+    position: relative;
+    margin-right: 2.5rem;
+    padding: 0.5rem 1rem;
+    border: 1.5px solid #38ceba;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #3ba395;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    background-color:inherit;
+  }
+  .details-button:hover{
+    border-color: rgba(47, 131, 120, 0.5);
+    color: rgba(98, 190, 178, 0.5);
+    background-color:rgb(39, 141, 127);
+    cursor:pointer;
+  }
+ .contentBtn{
+  all:unset;
+  padding: 5px;
+  background-color: rgb(32, 34, 36);
+ }
+ .fa-trash-can, .fa-pen-to-square{
+  color:crimson
+ }
+ .fa-trash-can:hover, .fa-pen-to-square:hover{
+  cursor:pointer;
+  color: #3ba395;
+ }
   .main-content-line-div{
     display:flex;
     gap: 12px;

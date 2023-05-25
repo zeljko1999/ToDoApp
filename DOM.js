@@ -38,12 +38,12 @@ export default function DOMtoDo () {
 
 
 export function drawTask(toDo, proID) { 
-    const deleteImg = document.createElement('img')
-    const editImg = document.createElement('img')
-    deleteImg.src = '../src/icons8-delete-100.png'
-    editImg.src = '../src/icons8-edit-80.png'
-    deleteImg.classList.add('icon')
-    editImg.classList.add('icon')
+    const deleteImg = document.createElement('i')
+    const editImg = document.createElement('i')
+    deleteImg.classList.add('fa-solid')
+    deleteImg.classList.add('fa-trash-can')
+    editImg.classList.add('fa-solid')
+    editImg.classList.add('fa-pen-to-square')
     const divLeft = document.createElement('div')
     const divRight = document.createElement('div')
     const newLine = document.createElement('div')
@@ -57,6 +57,9 @@ export function drawTask(toDo, proID) {
     const newEditBtn = document.createElement('button')
     newEditBtn.appendChild(editImg)
     const newDeleteBtn = document.createElement('button')
+    newEditBtn.classList.add('contentBtn')
+    newDeleteBtn.classList.add('contentBtn')
+    newDetailsBtn.classList.add('details-button')
     newDeleteBtn.appendChild(deleteImg)
     divLeft.appendChild(newCheckbox)
     divLeft.appendChild(newName)
@@ -67,10 +70,30 @@ export function drawTask(toDo, proID) {
     newLine.appendChild(divLeft)
     newLine.appendChild(divRight)
     newLine.classList.add('main-content-line')
+    if(toDo.priority === 'low'){
+        newLine.classList.add('prio-low')
+    }
+    else if(toDo.priority === 'medium')
+    {
+        newLine.classList.add('prio-medium')
+    }
+    else if(toDo.priority === 'high')
+    {
+        newLine.classList.add('prio-high')
+    }
     divLeft.classList.add('main-content-line-div')
     divRight.classList.add('main-content-line-div')
     mainContent.appendChild(newLine)
-
+    newCheckbox.addEventListener('click', function() {
+        if(newCheckbox.checked){
+            newName.classList.add('fade')
+            newDetailsBtn.classList.add('fadeBtn')
+        }
+        else{
+            newName.classList.remove('fade')
+            newDetailsBtn.classList.remove('fadeBtn')
+        }
+    })
     newDetailsBtn.addEventListener('click', function () {
         const displayContainer = document.querySelector('.details-container')
         const displayTitle = document.querySelector('.details-title')
