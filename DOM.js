@@ -20,7 +20,6 @@ const makeNewTask = () => {
     const newTask = createTodo(newTaskName.value, newTaskDetails.value, newTaskDate.value, selectedPriority)
     return newTask
     }
-
 const drawAllTasks = (project, projectID) => {
     mainContent.replaceChildren()
     for(let i=0;i<project.length;i++)
@@ -30,12 +29,13 @@ const clearMain = () => {
     mainContent.replaceChildren()
 }
 
-return {makeNewTask, drawAllTasks, clearMain,}
+return {makeNewTask, drawAllTasks, clearMain, }
 })()
 
 export default function DOMtoDo () {
 
 }
+
 
 
 export function drawTask(toDo, proID) { 
@@ -105,7 +105,20 @@ export function drawTask(toDo, proID) {
     })
     newDeleteBtn.addEventListener('click', function() {
         console.log(toDo, proID)
-    })
+        for(let i=0; i<projectsManager.projects.length; i++)
+            if(projectsManager.projects[i].isActive === 1)
+            {
+                for(let l=0; l<projectsManager.projects[i].tasks.length; l++)
+                {
+                    if(projectsManager.projects[i].tasks[l] === toDo)
+                    {
+                    projectsManager.projects[i].tasks.splice(l,1)
+                    }
+                }
+            taskManager.drawAllTasks(projectsManager.projects[i].tasks, projectsManager.projects[i].id)
+            console.log(projectsManager.projects[i].tasks)
+            }
+        })
     newDetailsBtn.addEventListener('click', function () {
         const displayContainer = document.querySelector('.details-container')
         const displayTitle = document.querySelector('.details-title')
