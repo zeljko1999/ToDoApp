@@ -116,7 +116,8 @@ export function drawTask(toDo, proID) {
                     }
                 }
             taskManager.drawAllTasks(projectsManager.projects[i].tasks, projectsManager.projects[i].id)
-            console.log(projectsManager.projects[i].tasks)
+            let name = projectsManager.projects[i].id
+            localStorage.setItem(name, JSON.stringify(projectsManager.projects[i]))
             }
         })
     newDetailsBtn.addEventListener('click', function () {
@@ -286,6 +287,10 @@ function drawTodo() {
         todoPrioLow.checked = false
         todoPrioMedium.checked = false
         form.style.display = 'none'
+        let name = projectsManager.projects[i].id
+        console.log(name)
+        console.log(projectsManager.projects[i])
+        localStorage.setItem(name, JSON.stringify(projectsManager.projects[i]))
         }
 })
 }

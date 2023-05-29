@@ -7,10 +7,21 @@ export function createProject (name) {
   return { name }
 }
 export const projectObject = (name) => { 
-  const tasks = []
-  const isActive = 0
-  const id = name
+  let project = JSON.parse(localStorage.getItem(name))
+  if(project === null)
+    {
+    const tasks = []
+    const isActive = 0
+    const id = name
   return { tasks, isActive, id }
+    }
+    else
+    {
+    const tasks = project.tasks
+    const isActive = project.isActive
+    const id = project.id
+    return { tasks, isActive, id }
+    }
 }
 
 export const projectsManager = (() => {
