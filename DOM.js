@@ -1,7 +1,8 @@
 const form = document.querySelector('.query-form')
 const mainContent = document.querySelector('.main-content')
 const homeTasksBtn = document.querySelector('#home')
-import createTodo, { createProject , projectsManager} from './factory'
+import addSeconds from 'date-fns/fp/addSeconds/index'
+import createTodo, { createProject , projectsManager, projectObject} from './factory'
 import { format, parseISO } from 'date-fns'
 
 export const taskManager = (() => {
@@ -104,7 +105,6 @@ export function drawTask(toDo, proID) {
         }
     })
     newDeleteBtn.addEventListener('click', function() {
-        console.log(toDo, proID)
         for(let i=0; i<projectsManager.projects.length; i++)
             if(projectsManager.projects[i].isActive === 1)
             {
@@ -118,6 +118,8 @@ export function drawTask(toDo, proID) {
             taskManager.drawAllTasks(projectsManager.projects[i].tasks, projectsManager.projects[i].id)
             let name = projectsManager.projects[i].id
             localStorage.setItem(name, JSON.stringify(projectsManager.projects[i]))
+            let asd = projectsManager.projects
+            localStorage.setItem('projects', JSON.stringify(asd))
             }
         })
     newDetailsBtn.addEventListener('click', function () {
@@ -288,13 +290,46 @@ function drawTodo() {
         todoPrioMedium.checked = false
         form.style.display = 'none'
         let name = projectsManager.projects[i].id
-        console.log(name)
-        console.log(projectsManager.projects[i])
         localStorage.setItem(name, JSON.stringify(projectsManager.projects[i]))
+        let asd = projectsManager.projects
+        localStorage.setItem('projects', JSON.stringify(asd))
         }
 })
 }
 hasEventListener++
+}
+
+export function loadProjects () {
+    let pro = JSON.parse(localStorage.getItem('projects'))
+    if(pro === null)
+    {
+    const home = projectObject('home')
+    home.isActive = 1;
+    const today = projectObject('today')
+    const thisWeek = projectObject('thisWeek')
+    const Study = projectObject('Study')
+    projectsManager.addProject(home)
+    projectsManager.addProject(today)
+    projectsManager.addProject(thisWeek)
+    projectsManager.addProject(Study)
+    console.log(projectsManager)
+    }
+    else
+    projectsManager.projects = pro
+
+    console.log(projectsManager.projects)
+    const projects = document.querySelector('.projects')
+    for(let i = 4; i<projectsManager.projects.length; i++)
+            {
+            const newProject = document.createElement('button')
+            const projectTitle = projectsManager.projects[i].id
+            newProject.textContent = projectTitle
+            newProject.setAttribute('id', projectTitle)
+            projects.appendChild(newProject)
+            projectsManager.addEListener(newProject)
+            let asd = projectsManager.projects
+            localStorage.setItem('projects', JSON.stringify(asd))
+            }
 }
 export function changeProject () {
     const projectBtn = document.querySelector('#changeProjectBtn')
@@ -331,6 +366,8 @@ export function changeProject () {
             projectsManager.projects.push(getProject(projectTitle.value))
             projectTitle.value = ''
             form.style.display='none'
+            let asd = projectsManager.projects
+            localStorage.setItem('projects', JSON.stringify(asd))
         })
 })
 }
