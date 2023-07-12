@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO App</title>
+    <script src="main.js" defer></script>
+    <script src="https://kit.fontawesome.com/bff3a1432a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="content">
+        <div class="details-container">
+            <div class="details-display">
+                <div class="details-header">
+                    <div class="details-title"></div>
+                    <button class="details-exitBtn"></button>
+                </div>
+                <div class="details-body">
+                    <div class="details-project"></div>
+                    <div class="details-priority"></div>
+                    <div class="details-date"></div>
+                    <div class="details-details"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="query-form">
+            <form action='' method='post' class="formContent">
+                <div class="form-header">
+                    <h2>Create a new...</h2>
+                    <button id="close-formBtn" type="button">X</button>
+                </div>
+                <div class="form-sidebar">
+                    <button id='changeToDoBtn' type="button">TO-DO</button>
+                    <button id='changeProjectBtn' type="button">Project</button>
+                    <button id='changeNoteBtn' type="button">Note</button>
+                </div>
+                <div class="form-main">
+                    <input type="text" name="title" id="taskTitle" placeholder = 'Title: Pay bills' required>
+                    <textarea rows="8" id='taskDetails' placeholder = 'Details: e.g internet, phone, rent.'></textarea>
+                </div>
+                <div class="form-footer">
+                    <div>Due Date: 
+                        <input type="date" id="duedate" required>
+                    </div>
+                    <div>Priority:
+                        <input type="radio" name ='priority' value="low" id="priority-low" required>
+                        <label for ='priority-low'>LOW</label>
+                        
+                        <input type="radio" name ='priority' value="medium" id="priority-medium">
+                        <label for ='priority-medium'>MEDIUM</label>
+                        
+                        <input type="radio" name ='priority' value="high" id="priority-high">
+                        <label for ='priority-high'>HIGH</label>
+                        <input class="submit-form" type="submit" onclick="handleSubmit(event)">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="header">
+            <div class="header-name">TO-DO APP</div>
+        </div>
+        <div class="sidebar">
+                <button id="home">Home</button>
+                <button id="today">Today</button>
+                <button>This Week</button>
+                <div class="projects">Projects:
+                    <button id="Study">Study</button>
+                </div>
+                <div class="notes">Notes:</div>
+                <button class="addNewBtn">+</button>
+
+        </div>
+        <div class="main">
+            <div class="main-content">
+
+            </div>
+        </div>
+        <div class="footer"></div>
+
+    </div>
+</body>
+</html>
